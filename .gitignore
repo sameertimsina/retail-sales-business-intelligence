@@ -1,0 +1,20 @@
+# SQLite Database binaries
+sql/*.db
+*.sqlite
+*.sqlite3
+
+# Python Bytecode & Cache
+__pycache__/
+*.py[cod]
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+
+# Virtual Environments (if any)
+venv/
+env/
+.venv/
+
+# OS Generated Files
+.DS_Store
+Thumbs.db
