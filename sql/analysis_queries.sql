@@ -20,8 +20,6 @@ FROM MonthlySales
 ORDER BY sales_month;
 
 
--- 2. RFM CUSTOMER SEGMENTATION (Recency, Frequency, Monetary)
-
 WITH CustomerMetrics AS (
     SELECT 
         customer_unique_id,
@@ -58,7 +56,6 @@ SELECT
 FROM RFMScores
 LIMIT 100;
 
--- 3. TOP 3 PRODUCT CATEGORIES PER STATE
 
 WITH StateCategorySales AS (
     SELECT 
@@ -81,8 +78,6 @@ SELECT
 FROM StateCategorySales
 WHERE category_rank <= 3
 ORDER BY customer_state, category_rank;
-
--- 4. DELIVERY PERFORMANCE & DELAY ANALYSIS BY STATE
 
 SELECT 
     customer_state,
