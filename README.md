@@ -28,17 +28,16 @@ An end-to-end data analytics and business intelligence solution processing over 
 
 ## 🏗️ Project Architecture & Tech Stack
 
-```text
-├── data/
-│   ├── raw/                 # Original Olist CSV datasets
-│   └── processed/           # Cleaned and merged master dataset
-├── notebooks/
-│   └── 01_data_cleaning_eda.ipynb  # Pandas data transformations & EDA
-├── sql/
-│   ├── analysis_queries.sql # Window functions, RFM segmentation, MoM growth
-│   └── olist.db             # (Ignored in Git) Local analytical SQLite database
-├── powerbi/
-│   ├── screenshots/         # Dashboard assets
-│   └── retail_sales_dashboard.pbix  # Interactive report & DAX measures
-├── .gitignore               # Excludes binary databases and cache
-└── README.md                # Project documentation
+- `data/`
+  - `raw/` — Original Olist datasets
+  - `processed/` — Cleaned data
+- `notebooks/`
+  - `01_data_cleaning_eda.ipynb` — Data cleaning and EDA
+- `sql/`
+  - `analysis_queries.sql` — SQL analysis queries
+  - `olist.db` — Local SQLite database
+- `powerbi/`
+  - `screenshots/` — Dashboard screenshots
+  - `retail_sales_dashboard.pbix` — Power BI dashboard
+- `.gitignore`
+- `README.md`
