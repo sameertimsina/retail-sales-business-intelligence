@@ -1,13 +1,4 @@
--- ===================================================================
--- Retail Sales & Business Intelligence Analysis Queries
--- Dataset: Olist Brazilian E-Commerce
--- Target Table: cleaned_master_sales
--- ===================================================================
 
-----------------------------------------------------------------------
--- 1. MONTH-OVER-MONTH (MoM) REVENUE GROWTH ANALYSIS
--- Goal: Calculate monthly revenue, previous month revenue, and MoM % growth.
-----------------------------------------------------------------------
 WITH MonthlySales AS (
     SELECT 
         STRFTIME('%Y-%m', order_purchase_timestamp) AS sales_month,
@@ -29,10 +20,8 @@ FROM MonthlySales
 ORDER BY sales_month;
 
 
-----------------------------------------------------------------------
 -- 2. RFM CUSTOMER SEGMENTATION (Recency, Frequency, Monetary)
--- Goal: Segment customers into actionable marketing groups.
-----------------------------------------------------------------------
+
 WITH CustomerMetrics AS (
     SELECT 
         customer_unique_id,
@@ -47,7 +36,7 @@ RFMScores AS (
         customer_unique_id,
         frequency,
         monetary,
-        -- Calculate Recency in days relative to max date in dataset
+        
         JULIANDAY('2018-09-01') - JULIANDAY(last_purchase_date) AS recency_days,
         NTILE(4) OVER (ORDER BY last_purchase_date ASC) AS r_score,
         NTILE(4) OVER (ORDER BY frequency DESC) AS f_score,
@@ -69,11 +58,8 @@ SELECT
 FROM RFMScores
 LIMIT 100;
 
-
-----------------------------------------------------------------------
 -- 3. TOP 3 PRODUCT CATEGORIES PER STATE
--- Goal: Rank product category revenue per state using DENSE_RANK window function.
-----------------------------------------------------------------------
+
 WITH StateCategorySales AS (
     SELECT 
         customer_state,
@@ -96,11 +82,8 @@ FROM StateCategorySales
 WHERE category_rank <= 3
 ORDER BY customer_state, category_rank;
 
-
-----------------------------------------------------------------------
 -- 4. DELIVERY PERFORMANCE & DELAY ANALYSIS BY STATE
--- Goal: Evaluate average delivery days and delay percentages by region.
-----------------------------------------------------------------------
+
 SELECT 
     customer_state,
     COUNT(DISTINCT order_id) AS total_orders,
